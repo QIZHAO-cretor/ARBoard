@@ -58,7 +58,7 @@ public class AugmentedImageRenderer {
     imageFrameLowerLeft.setBlendMode(BlendMode.AlphaBlending);
 
     imageFrameLowerRight.createOnGlThread(
-        context, "models/test3dobj.obj", "models/earth_ball.jpg");
+        context, "models/test3dobj.obj", "models/pcb.png");
     imageFrameLowerRight.setMaterialProperties(0.0f, 3.5f, 1.0f, 6.0f);
     imageFrameLowerRight.setBlendMode(BlendMode.AlphaBlending);
   }
@@ -100,7 +100,7 @@ public class AugmentedImageRenderer {
 
 //
 //    worldBoundaryPoses[2].toMatrix(modelMatrix, 0);
-    if (augmentedImage.getName().equals("default.jpg")){
+    if (augmentedImage.getName().equals("pcb.png")){
     imageFrameLowerRight.updateModelMatrix(modelMatrix, scaleFactor);
     imageFrameLowerRight.draw(viewMatrix, projectionMatrix, colorCorrectionRgba, tintColor);}
 //

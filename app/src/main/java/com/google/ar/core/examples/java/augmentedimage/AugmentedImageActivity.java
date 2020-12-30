@@ -120,6 +120,7 @@ public class AugmentedImageActivity extends AppCompatActivity implements GLSurfa
     surfaceView.setWillNotDraw(false);
 
     fitToScanView = findViewById(R.id.image_view_fit_to_scan);
+    textView = findViewById(R.id.textView);
     glideRequestManager = Glide.with(this);
     glideRequestManager
         .load(Uri.parse("file:///android_asset/fit_to_scan.png"))
@@ -338,6 +339,22 @@ public class AugmentedImageActivity extends AppCompatActivity implements GLSurfa
           // When an image is in PAUSED state, but the camera is not PAUSED, it has been detected,
           // but not yet tracked.
           String text = String.format("Detected Image %s", augmentedImage.getName());
+          if (augmentedImage.getName().equals("broadcom.png")){
+            textView.setText("The Broadcom chip used in the Raspberry Pi 2 Model B\n" +
+                    "The underlying architecture in BCM2836 is identical to BCM2835.\n" +
+                    "The only significant difference is the removal of the ARM1176JZF-S\n" +
+                    " processor and replacement with a quad-core Cortex-A7 cluster.\n");
+          }
+          if (augmentedImage.getName().equals("headphone_jack.png")){
+            textView.setText("The Pi Model B+, Pi 2, Pi 3 and Pi 4 features a 4-pole 3.5mm audio jack which also includes the composite video signal.\n"+
+                    " This has allowed for the removal of the composite video socket found on the original Model B.");
+          }
+          if (augmentedImage.getName().equals("smsc.png")){
+            textView.setText("Microchip's LAN9514/LAN9514i are the industry's first fully-integrated,\n"+
+                    " Hi-Speed USB 2.0 hub and high-performance 10/100 Ethernet controllers.\n"+
+                    " The LAN9514/LAN9514i are specifically designed to provide system architects with a low-cost,\n"+
+                    " power-efficient, small-footprint USB to Ethernet and multi-port USB connectivity solution in a single package.\n");
+          }
           messageSnackbarHelper.showMessage(this, text);
           break;
 
@@ -420,7 +437,7 @@ public class AugmentedImageActivity extends AppCompatActivity implements GLSurfa
   }
 
   private Bitmap loadAugmentedImageBitmap() {
-    try (InputStream is = getAssets().open("smsc.png")) {
+    try (InputStream is = getAssets().open("pcb.png")) {
       return BitmapFactory.decodeStream(is);
     } catch (IOException e) {
       Log.e(TAG, "IO exception loading augmented image bitmap.", e);
